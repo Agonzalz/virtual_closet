@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>outfit_creator</title>
+    <link rel="stylesheet" href="outfit_creator.css">
 </head>
 <body>
     <nav>
@@ -11,12 +12,33 @@
         <a href="../index.html">Home</a>
     </nav>
     <h1>Create an Outfit</h1>
-    <form>
-        <input id = name type="text" placeholder="name">
-        <input id = type type="text" placeholder="type">
-        <input id = color type="text" placeholder="color">
-        <input id = img type="text" placeholder="image">
-        <input type ="submit" value = "Submit"/>
+    <form action = "example.com/" method="post">
+        <label for="name" >
+            Name: <input id = name type="text" placeholder="name" name="name">
+        </label>
+        <label for="type">Type: </label>
+        <select name = "type">
+            <optgroup label="Tops">
+                <option value="outerwear">Outerwear</option>
+                <option value="shirt" selected>Shirt</option>
+            </optgroup>
+            <optgroup label = "Bottoms">
+                <option value="pants">Pants</option>
+                <option value="shorts">Shorts</option>
+            </optgroup>
+            <optgroup label="Footwear">
+                <option value="sneakers">Sneakers</option>
+                <option value="boots">Boots</option>
+                <option value="dress_shoes">Dress Shoes</option>
+                <option value="sandals">Sandals</option>
+            </optgroup>
+        </select>
+        <label for= "color">
+            Color: <input id = color type="text" placeholder="color" name = "color">
+        <label for = "image">
+            Image: <input id = img type="text" placeholder="image">
+        </label>
+        <button type="submit"> Submit</button>
     </form>
 </body>
 </html>

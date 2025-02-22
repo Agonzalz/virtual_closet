@@ -1,15 +1,32 @@
 
+/* :root.dark {
+    --main-color: #0f1919;
+    
+} */
+
+:root {
+    --main-color: cadetblue;
+}
+
+
+body {
+    background-color: var(--main-color, white);
+}
+
+
 header {
     display: flex;
     justify-content: center;
     box-sizing: border-box;
     width: 100vw;
-    background-color: cadetblue;
+    background-color: burlywood;
+    border-radius: 20px;
 }
 
 nav {
-    border-color: burlywood;
-    border-style:solid;
+    background-color: burlywood;
+    /* border-color: burlywood; */
+    /* border-style:solid; */
     border-width: 5px;
     border-radius: 20px;
     padding: 1em;
@@ -30,4 +47,14 @@ h1 {
 .main_buttons {
     display: flex;
     justify-content: center;
+
+}
+button {
+    color: black;
+    background-color: lightsteelblue;
+    border-radius: 0%;
+}
+
+button:hover {
+    cursor: pointer;
 }

@@ -2,7 +2,31 @@
 html{
     background-color: cadetblue;
 }
+body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    
+}
 
+form {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 2em;
+}
+
+input {
+    box-sizing: border-box;
+    width:150px;
+    padding: 0;
+    margin: 0;
+}
+
+select, button {
+    align-self: center;
+    width: 100px;
+}
 
 nav {
     background-color: burlywood;
@@ -11,4 +35,15 @@ nav {
     border-width: 5px;
     border-radius: 20px;
     padding: 1em;
+}
+
+input:invalid {
+    border-color: red;
+}
+input:focus {
+    border-color: blue;
+}
+
+input:valid{ 
+    border-color: green;
 }

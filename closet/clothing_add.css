@@ -57,6 +57,8 @@ nav {
     border-width: 5px;
     border-radius: 20px;
     padding: 1em;
+    position: sticky;
+    top: 10px;
 }
 
 input:invalid {

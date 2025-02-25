@@ -11,41 +11,45 @@
         <a href="inventory.html">Inventory</a> |
         <a href="../index.html">Home</a>
     </nav>
-    <h1>Create an Outfit</h1>
+    <h1>Add a Piece of Clothing</h1>
 
     <div class="container">
         <div class="left">
             <form action = "#" method="post">
                 <fieldset>
-                    <label for="name" >
-                        *Name: <input id = name type="text" placeholder="name" name="name" required>
-                    </label>
-                    <label for="type">Type:
-                        <select name = "type">
-                            <optgroup label="Tops">
-                                <option value="outerwear">Outerwear</option>
-                                <option value="shirt" selected>Shirt</option>
-                            </optgroup>
-                            <optgroup label = "Bottoms">
-                                <option value="pants">Pants</option>
-                                <option value="shorts">Shorts</option>
-                            </optgroup>
-                            <optgroup label="Footwear">
-                                <option value="sneakers">Sneakers</option>
-                                <option value="boots">Boots</option>
-                                <option value="dress_shoes">Dress Shoes</option>
-                                <option value="sandals">Sandals</option>
-                            </optgroup>
-                            </select>
-                    </label>
-                    <label for= "color">
-                        *Color: <input id = color type="text" placeholder="color" name = "color" required>
-                    </label>
-                    <label for = "image">
-                        Image: <input id = img type="text" placeholder="image">
-                    </label>
+                    <div class="input-row">
+                        <label for="name" > *Name:</label>
+                        <input id = name type="text" placeholder="name" name="name" required>
+                    </div>
+                    <div class="input-row">
+                        <label for="type">Type:</label>
+                            <select name = "type">
+                                <optgroup label="Tops">
+                                    <option value="outerwear">Outerwear</option>
+                                    <option value="shirt" selected>Shirt</option>
+                                </optgroup>
+                                <optgroup label = "Bottoms">
+                                    <option value="pants">Pants</option>
+                                    <option value="shorts">Shorts</option>
+                                </optgroup>
+                                <optgroup label="Footwear">
+                                    <option value="sneakers">Sneakers</option>
+                                    <option value="boots">Boots</option>
+                                    <option value="dress_shoes">Dress Shoes</option>
+                                    <option value="sandals">Sandals</option>
+                                </optgroup>
+                                </select>
+                    </div>
+                    <div class="input-row">
+                        <label for= "color">*Color:</label> 
+                        <input id = color type="text" placeholder="color" name = "color" required>
+                    </div>
+                    <div class="input-row">
+                        <label for = "image">Image: </label>
+                        <input id = img type="text" placeholder="image">
+                    </div>
                 </fieldset>
-                <button type="submit"> Submit</button>
+                <button type="submit">Add Clothing</button>
             </form>
         </div>
 

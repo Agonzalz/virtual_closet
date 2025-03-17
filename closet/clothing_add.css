@@ -7,26 +7,32 @@ body {
     color: white;
 }
 .container {
-    display: flex;
+    /* display: flex; */
+    display: grid;
+    grid-template-columns: 1fr 3fr;
 }
 
 .left {
     font-size: 1.5em;
     width: 30vw;
-    display: flex;
-    flex-direction: column;
+    /* display: flex;
+    flex-direction: column; */
+    grid-column:  1/2;
 }
 
 .right {
     height:100vh;
     width:70vw;
     background-color: rgba(240,240,255,0.8);
+    grid-column: 2/3;
 }
 
 
 form {
     position: relative;
     top: 10%;
+    display: flex;
+    flex-direction: column;
 }
 fieldset {
     color: black;

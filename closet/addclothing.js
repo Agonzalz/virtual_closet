@@ -21,4 +21,9 @@ form.addEventListener('submit', function(e) {
     form.reset();
     newClothingItem.displayClothing();
     console.log(closet);
+
+    const rightSide = document.getElementById('right');
+    const message = document.createElement('p');
+    message.textContent = closet;
+    rightSide.appendChild(message);
 });

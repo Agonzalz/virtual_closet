@@ -1,6 +1,10 @@
 import { Clothing } from "./clothing.js";
+import { displayClothingItem } from "./display_clothing.js";
 
 const form = document.getElementById('clothingForm');
+const displayContainer = document.getElementById('right'); // Get the display area
+
+
 form.addEventListener('submit', function(e) {
     console.log('Form submitted');  // Check if this shows up in the console
     e.preventDefault();
@@ -19,11 +23,7 @@ form.addEventListener('submit', function(e) {
 
     alert('Clothing Item added');
     form.reset();
-    newClothingItem.displayClothing();
+    displayClothingItem(newClothingItem);
     console.log(closet);
 
-    const rightSide = document.getElementById('right');
-    const message = document.createElement('p');
-    message.textContent = closet;
-    rightSide.appendChild(message);
 });

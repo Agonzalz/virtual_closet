@@ -1,59 +1,110 @@
 
-const displayContainer = document.getElementById('display');
-const closet = JSON.parse(localStorage.getItem('closet')) || [];
-
-function deleteClothingItem(index) {
+document.addEventListener('DOMContentLoaded', () => {
+    const displayContainer = document.getElementById('display');
     const closet = JSON.parse(localStorage.getItem('closet')) || [];
-    closet.splice(index, 1); // Remove the item at that index
-    localStorage.setItem('closet', JSON.stringify(closet));
-    location.reload(); // Refresh to update the display
-}
+    const randomButton = document.getElementById('randomButton');
+    randomButton.addEventListener('click', displayRandomClothing);
 
-function editClothingItem(item, index) {
-    const newName = prompt('Edit name:', item.name);
-    const newType = prompt('Edit type:', item.type);
-    const newColor = prompt('Edit color:', item.color);
-    const newImage = prompt('Edit image URL:', item.image);
 
-    const updatedItem = {
-        name: newName || item.name,
-        type: newType || item.type,
-        color: newColor || item.color,
-        image: newImage || item.image
-    };
+    function renderCloset(items) {
+        displayContainer.innerHTML = '';
 
-    const closet = JSON.parse(localStorage.getItem('closet')) || [];
-    closet[index] = updatedItem;
-    localStorage.setItem('closet', JSON.stringify(closet));
-    location.reload(); // Refresh to update the display
-}
+        items.forEach((item, index) => {createClothingCard(item, index)})
+    }
 
-function createClothingCard(item, index) {
-    const card = document.createElement('div')
-    card.classList.add('item');
+    function deleteClothingItem(index) {
+        const closet = JSON.parse(localStorage.getItem('closet')) || [];
+        closet.splice(index, 1); // Remove the item at that index
+        localStorage.setItem('closet', JSON.stringify(closet));
+        location.reload(); // Refresh to update the display
+    }
 
-        card.innerHTML = `
-            <p class="cloth-name">${item.name}</p>
-            ${item.image ? `<img class="cloth-img" src="${item.image}" alt="${item.name}" width = "100">` : ''}
-            <p class="cloth-desc">${item.color} ${item.type}</p>
-            <button class="edit-btn">Edit</button>
-            <button class="delete-btn">Delete</button>
-        `;
+    function editClothingItem(item, index) {
+        const newName = prompt('Edit name:', item.name);
+        const newType = prompt('Edit type:', item.type);
+        const newColor = prompt('Edit color:', item.color);
+        const newImage = prompt('Edit image URL:', item.image);
 
-     // Delete functionality
-     card.querySelector('.delete-btn').addEventListener('click', () => {
-        deleteClothingItem(index);
-    });
+        const updatedItem = {
+            name: newName || item.name,
+            type: newType || item.type,
+            color: newColor || item.color,
+            image: newImage || item.image
+        };
 
-    // Edit functionality
-    card.querySelector('.edit-btn').addEventListener('click', () => {
-        editClothingItem(item, index);
-    });
+        const closet = JSON.parse(localStorage.getItem('closet')) || [];
+        closet[index] = updatedItem;
+        localStorage.setItem('closet', JSON.stringify(closet));
+        location.reload(); // Refresh to update the display
+    }
 
-    displayContainer.appendChild(card);
-}
+    function createClothingCard(item, index) {
+        const card = document.createElement('div')
+        card.classList.add('item');
 
-  // Loop through items and create cards
-  closet.forEach(item => {
-    createClothingCard(item);
+            card.innerHTML = `
+                <p class="cloth-name">${item.name}</p>
+                ${item.image ? `<img class="cloth-img" src="${item.image}" alt="${item.name}" width = "100">` : ''}
+                <p class="cloth-desc">${item.color} ${item.type}</p>
+                <button class="edit-btn">Edit</button>
+                <button class="delete-btn">Delete</button>
+            `;
+
+        // Delete functionality
+        card.querySelector('.delete-btn').addEventListener('click', () => {
+            deleteClothingItem(index);
+        });
+
+        // Edit functionality
+        card.querySelector('.edit-btn').addEventListener('click', () => {
+            editClothingItem(item, index);
+        });
+
+        displayContainer.appendChild(card);
+    }
+
+    function applyFilters() {
+        const selectedTypes = Array.from(document.querySelectorAll('.filter-type:checked')).map(cb=>cb.value);
+
+        const closet = JSON.parse(localStorage.getItem('closet')) || [];
+        const filteredCloset = selectedTypes.length ? closet.filter(item => selectedTypes.includes(item.type)) : closet;
+
+        renderCloset(filteredCloset);
+    }
+
+    function getFilteredCloset() {
+        const selectedTypes = Array.from(document.querySelectorAll('.filter-type:checked')).map(cb =>cb.value);
+
+        let closet = JSON.parse(localStorage.getItem('closet')) || [];
+
+        return selectedTypes.length ? closet.filter(item => selectedTypes.includes(item.type)) : closet;
+    }
+
+    function displayRandomClothing() {
+        const filteredCloset = getFilteredCloset();
+        console.log("Random button clicked!"); // Debug statement
+        if (filteredCloset.length === 0) {
+            alert("No clothing items available for selected filter");
+            return;
+        }
+        const randomIndex = Math.floor(Math.random() * filteredCloset.length);
+        const randomItem = filteredCloset[randomIndex];
+
+        renderCloset([randomItem]);
+    }
+
+
+
+    document.querySelectorAll('.filter-type').forEach(cb => {
+        cb.addEventListener('change', applyFilters);
+    })
+
+    renderCloset(closet);
+    // Loop through items and create cards
+    // closet.forEach(item => {
+    //     createClothingCard(item);
+    // });
+
+
 });
+

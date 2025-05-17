@@ -6,6 +6,12 @@ document.addEventListener('DOMContentLoaded', () => {
     randomButton.addEventListener('click', displayRandomClothing);
 
 
+    function openForm() {
+        document.getElementById("addForm").style.display = "block";
+    }
+    function closeForm() {
+        document.getElementById("addForm").style.display = "none";
+    }
     function renderCloset(items) {
         displayContainer.innerHTML = '';
 

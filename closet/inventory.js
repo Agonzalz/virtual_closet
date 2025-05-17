@@ -1,12 +1,41 @@
 
+import { Clothing } from "./clothing.js";
+
 document.addEventListener('DOMContentLoaded', () => {
     const displayContainer = document.getElementById('display');
     const closet = JSON.parse(localStorage.getItem('closet')) || [];
     const randomButton = document.getElementById('randomButton');
+    const addButton = document.getElementById('addButton');
+    const cancelButton  = document.getElementById('cancelButton');
+    const form = document.getElementById('clothingForm')
+
     randomButton.addEventListener('click', displayRandomClothing);
-
-
+    addButton.addEventListener('click', openForm);
+    cancelButton.addEventListener('click', closeForm);
+    form.addEventListener('submit', function(e) {
+        console.log('Form submitted');
+        e.preventDefault();
+        const name = document.getElementById('name').value;
+        const type = document.querySelector('select[name="type"]').value;
+        const color = document.getElementById('color').value;
+        const image = document.getElementById('img').value;
+    
+        const newClothingItem = new Clothing(name, type, color, image);
+    
+        //store in local storage
+        let closet = JSON.parse(localStorage.getItem('closet')) || [];
+        closet.push(newClothingItem);
+        localStorage.setItem('closet', JSON.stringify(closet));
+    
+        alert('Clothing Item added');
+        form.reset();
+        closeForm();
+        location.reload();
+        console.log(closet);
+    })
+    
     function openForm() {
+        console.log("function called");
         document.getElementById("addForm").style.display = "block";
     }
     function closeForm() {

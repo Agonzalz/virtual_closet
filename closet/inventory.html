@@ -9,17 +9,49 @@
 <body>
     <nav>
         <a href="../index.html">Home</a> |     
-        <a href="clothing_add.html">Add Clothing</a>
     </nav>
     <h1>Your Closet</h1>
     <div class="container">
         <div class="sidebar"> 
             <button id="randomButton">Random</button>
-            <button id="addButton" onclick="openForm()">Add Clothing</button>
+            <button id="addButton" >Add Clothing</button>
             <div class="popup-form" id="addForm">
-                <form class="form-container" action="#" method="post">
-                    <label>name</label>
-                    <input>
+                <form class="form-container" id="clothingForm" action="#" method="post">
+                    <fieldset>
+                        <div class="input-row">
+                            <label for="name" > *Name:</label>
+                            <input id = name type="text" placeholder="name" name="name" required>
+                        </div>
+                        <div class="input-row">
+                            <label for="type">Type:</label>
+                                <select name = "type">
+                                    <optgroup label="Tops">
+                                        <option value="outerwear">Outerwear</option>
+                                        <option value="shirt" selected>Shirt</option>
+                                    </optgroup>
+                                    <optgroup label = "Bottoms">
+                                        <option value="pants">Pants</option>
+                                        <option value="shorts">Shorts</option>
+                                    </optgroup>
+                                    <optgroup label="Footwear">
+                                        <option value="sneakers">Sneakers</option>
+                                        <option value="boots">Boots</option>
+                                        <option value="dress_shoes">Dress Shoes</option>
+                                        <option value="sandals">Sandals</option>
+                                    </optgroup>
+                                    </select>
+                        </div>
+                        <div class="input-row">
+                            <label for= "color">*Color:</label> 
+                            <input id = color type="text" placeholder="color" name = "color" required>
+                        </div>
+                        <div class="input-row">
+                            <label for = "image">Image: </label>
+                            <input id = img type="text" placeholder="image">
+                        </div>
+                    </fieldset>
+                    <button type="submit">Add Clothing</button>
+                    <button id="cancelButton">Cancel</button>
                 </form>
             </div>
             <p>filteres</p>

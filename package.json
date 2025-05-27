@@ -2,7 +2,7 @@
   "name": "virtual_closet",
   "version": "1.0.0",
   "description": "Virtual Closet websitie that displays your clothing and lets you keep track of them and generate outfits,",
-  "main": "index.js",
+  "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/Agonzalz/virtual_closet/issues"
   },
-  "homepage": "https://github.com/Agonzalz/virtual_closet#readme"
+  "homepage": "https://github.com/Agonzalz/virtual_closet#readme",
+  "dependencies": {
+    "express": "^5.1.0"
+  }
 }

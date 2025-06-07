@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="inventory.css">
+    <link rel="stylesheet" href="./css/inventory.css">
     <title>closet</title>
 </head>
 <body>
@@ -54,11 +54,19 @@
                     <button id="cancelButton">Cancel</button>
                 </form>
             </div>
-            <p>filteres</p>
+            <p>Filters</p>
             <ul style="list-style-type: none;">
+                <li> 
+                    <input type="checkbox" id="filter-outerwear" class="filter-type" value="outerwear">
+                    <label for="filter-outerwear">Outerwear</label>
+                </li>
                 <li> 
                     <input type="checkbox" id="filter-shirt" class = "filter-type" value="shirt">
                     <label for="filter-shirt">Shirt</label>
+                </li>
+                <li> 
+                    <input type="checkbox" id="filter-pants" class="filter-type" value="pants">
+                    <label for="filter-pants">Pants</label>
                 </li>
                 <li> 
                     <input type="checkbox" id="filter-shoes" class="filter-type" value="sneakers">
@@ -66,7 +74,15 @@
                 </li>
                 <li> 
                     <input type="checkbox" id="filter-boots" class="filter-type" value="boots">
-                    <label for="filter-boots">boots</label>
+                    <label for="filter-boots">Boots</label>
+                </li>
+                <li> 
+                    <input type="checkbox" id="filter-dress-shoes" class="filter-type" value="dress_shoes">
+                    <label for="filter-dress_shoes">Dress Shoes</label>
+                </li>
+                <li> 
+                    <input type="checkbox" id="filter-sandals" class="filter-type" value="sandals">
+                    <label for="filter-sandals">Sandals</label>
                 </li>
             </ul>
         </div>
@@ -108,6 +124,6 @@
             </div> -->
         </div>
     </div>
-    <script src="inventory.js" type="module"></script>
+    <script src="./js/inventory.js" type="module"></script>
 </body>
 </html>

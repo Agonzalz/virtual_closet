@@ -1,28 +1,54 @@
-import { Clothing } from "./clothing";
-import { loadCloset, addClothingItem, deleteClothingItem, updateClothingItem } from "./temp";
-import { renderCloset } from "./render";
+import { loadCloset, editClothingItem, deleteClothingItem } from "./actions.js";
+import { renderCloset } from "./render.js";
+import { filterClosetByType, getSelectedTypes } from "./filters.js";
+import { openForm, closeForm, setupFormHandlers } from "./form.js";
+import { getRandomItem } from "./randomizer.js"; 
 
 document.addEventListener('DOMContentLoaded', () => {
     const displayContainer = document.getElementById('display');
-    const closet = loadCloset();
+    const form = document.getElementById("clothingForm");
+    const addButton = document.getElementById("addButton");
+    const cancelButton = document.getElementById("cancelButton");
+    const randomButton = document.getElementById("randomButton");
 
-    const editHandler = (item, index) => {
-        const newName = prompt('Edit name:', item.name);
-        const newType = prompt('Edit type:', item.type);
-        const newColor = prompt('Edit color:', item.color);
-        const newImage = prompt('Edit image URL:', item.image);
 
-        updateClothingItem(index, {
-            name: newName || item.name,
-            type: newType || item.type,
-            color: newColor || item.color,
-            image: newImage || item.image
+     // General-purpose render function
+    function render(closetItems) {
+        renderCloset(closetItems, displayContainer);
+    }
+
+    // Form setup
+    addButton.addEventListener("click", openForm);
+    cancelButton.addEventListener("click", closeForm);
+    setupFormHandlers(form, render);
+
+    // Filter Checkboxes
+    document.querySelectorAll('.filter-type').forEach((cb) => {
+        cb.addEventListener("change", () => {
+            const closet = loadCloset();
+            const selectedTypes = getSelectedTypes();
+            const filteredCloset = filterClosetByType(closet, selectedTypes);
+
+            render(filteredCloset);
         });
-        location.reload();
-    };
-    const deleteHandler = (index) => {
-        deleteClothingItem(index);
-        location.reload();
-    };
-    renderCloset(closet, displayContainer, editHandler, deleteHandler);
+    });
+
+    // Random Item Display
+    randomButton.addEventListener("click", () => {
+        const selectedTypes = getSelectedTypes();
+        const closet = loadCloset();
+        const filtered = filterClosetByType(closet, selectedTypes);
+
+        if (filtered.length === 0) {
+            alert("No clothing items available for selected filter");
+            return;
+        }
+
+
+        const randomItem = getRandomItem(filtered);
+        render([randomItem]);
+    });
+
+    // Initial render
+    render(loadCloset());
 });

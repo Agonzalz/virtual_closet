@@ -1,8 +1,34 @@
 // rendering the clothing items to screen
 
-export function renderCloset(items, container, editHandler, deleteHandler) {
+function handleDelete(index) {
+    const closet = JSON.parse(localStorage.getItem('closet')) || [];
+    closet.splice(index, 1);
+    localStorage.setItem('closet', JSON.stringify(closet));
+    location.reload();
+}
+
+function handleEdit(item, index) {
+    const newName = prompt('Edit name:', item.name);
+    const newType = prompt('Edit type:', item.type);
+    const newColor = prompt('Edit color:', item.color);
+    const newImage = prompt('Edit image URL:', item.image);
+
+    const updatedItem = {
+        name: newName || item.name,
+        type: newType || item.type,
+        color: newColor || item.color,
+        image: newImage || item.image
+    };
+
+    const closet = JSON.parse(localStorage.getItem('closet')) || [];
+    closet[index] = updatedItem;
+    localStorage.setItem('closet', JSON.stringify(closet));
+    location.reload();
+}
+
+export function renderCloset(items, container) {
     container.innerHTML = '';
-    items.foreach((item, index) => {
+    items.forEach((item, index) => {
         const card = document.createElement('div');
         card.classList.add('item');
         card.innerHTML = `
@@ -12,8 +38,15 @@ export function renderCloset(items, container, editHandler, deleteHandler) {
             <button class="edit-btn">Edit</button>
             <button class="delete-btn">Delete</button>
         `;
-        card.querySelector('delete-btn').addEventListener('click', () => deleteHandler(index));
-        card.querySelector('.edit-btn').addEventListener('click', () => editHandler(item, index));
+    // Add event listeners for Edit/Delete
+        card.querySelector('.edit-btn').addEventListener('click', () => {
+            handleEdit(item, index);
+        });
+
+        card.querySelector('.delete-btn').addEventListener('click', () => {
+            handleDelete(index);
+        });
+
         container.appendChild(card);
     });
 }

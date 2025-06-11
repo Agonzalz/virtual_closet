@@ -18,13 +18,16 @@ export function setupFormHandlers(formElement, onItemAddedCallback) {
         const type = document.querySelector('select[name="type"]').value;
         const color = document.getElementById("color").value.trim();
         const image = document.getElementById("img").value.trim();
+        const tagsInput = document.getElementById("tags").value;
+
+        const tags = tagsInput.split(',').map(tag => tag.trim()).filter(tag => tag);
 
         if (!name || !type || !color) {
         alert("Please fill out all required fields.");
         return;
         }
 
-        const newClothingItem = new Clothing(name, type, color, image);
+        const newClothingItem = new Clothing(name, type, color, image, tags);
         addClothingItem(newClothingItem);
 
         alert("Clothing Item Added!");
